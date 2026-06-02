@@ -14,7 +14,7 @@ from sklearn.metrics import accuracy_score, confusion_matrix, classification_rep
 # Step 1: Load and preprocess data
 # ================================
 
-df = pd.read_csv("C:/Users/ASUS/OneDrive/Desktop/breast-cancer-classification/data/breast_cancer.csv")
+df = pd.read_csv("data/breast_cancer.csv")
 
 # Drop unnecessary columns
 df = df.drop(columns=['id', 'Unnamed: 32'], errors='ignore')
