@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import joblib
+from pathlib import Path
 
 # ----------------------------
 # Page Config
@@ -16,14 +17,17 @@ st.set_page_config(
 # Load Model & Pipeline
 # ----------------------------
 
+BASE_DIR = Path(__file__).parent
+
 @st.cache_resource
 def load_model():
-    return joblib.load("models/trained_model.pkl")
+    return joblib.load(BASE_DIR / "models" / "trained_model.pkl")
 
 @st.cache_resource
 def load_pipeline():
-    return joblib.load("models/preprocessing_pipeline.pkl")
+    return joblib.load(BASE_DIR / "models" / "preprocessing_pipeline.pkl")
 
+# Load model and pipeline
 model = load_model()
 pipeline = load_pipeline()
 
@@ -155,7 +159,7 @@ if st.button("🔍 Predict Loan Status", use_container_width=True):
                 f"Approval Probability: **{probability[1] * 100:.2f}%**"
             )
 
-        except:
+        except Exception:
             st.info("Probability score not available.")
 
     except Exception as e:
