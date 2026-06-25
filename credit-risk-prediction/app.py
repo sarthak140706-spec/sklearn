@@ -27,7 +27,6 @@ def load_model():
 def load_pipeline():
     return joblib.load(BASE_DIR / "models" / "preprocessing_pipeline.pkl")
 
-# Load model and pipeline
 model = load_model()
 pipeline = load_pipeline()
 
@@ -37,12 +36,10 @@ pipeline = load_pipeline()
 
 st.title("💳 Credit Risk Prediction System")
 
-st.markdown(
-    """
-    Predict whether a loan application is likely to be
-    **Approved** or **Rejected** using Machine Learning.
-    """
-)
+st.markdown("""
+Predict whether a loan application is likely to be
+**Approved** or **Rejected** using Machine Learning.
+""")
 
 st.divider()
 
@@ -123,6 +120,7 @@ if st.button("🔍 Predict Loan Status", use_container_width=True):
 
     try:
         input_df = pd.DataFrame({
+            "Loan_ID": ["LP001000"],  # Dummy Loan_ID required by pipeline
             "Gender": [gender],
             "Married": [married],
             "Dependents": [dependents],
@@ -147,6 +145,7 @@ if st.button("🔍 Predict Loan Status", use_container_width=True):
         else:
             st.error("❌ Loan Likely to be Rejected")
 
+        # Probability Scores
         try:
             probability = model.predict_proba(processed_input)[0]
 
@@ -159,8 +158,12 @@ if st.button("🔍 Predict Loan Status", use_container_width=True):
                 f"Approval Probability: **{probability[1] * 100:.2f}%**"
             )
 
+            st.write(
+                f"Rejection Probability: **{probability[0] * 100:.2f}%**"
+            )
+
         except Exception:
-            st.info("Probability score not available.")
+            st.info("Probability scores not available for this model.")
 
     except Exception as e:
         st.error(f"Error: {e}")
@@ -171,10 +174,12 @@ if st.button("🔍 Predict Loan Status", use_container_width=True):
 
 st.divider()
 
-st.markdown(
-    """
-    **Tech Stack:** Python • Scikit-Learn • Streamlit
+st.markdown("""
+### 🛠 Tech Stack
+- Python
+- Scikit-Learn
+- Pandas
+- Streamlit
 
-    Developed by **Sarthak Jadhav**
-    """
-)
+**Developed by Sarthak Jadhav**
+""")
