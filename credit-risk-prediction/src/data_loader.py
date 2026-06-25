@@ -3,23 +3,34 @@ import pandas as pd
 def load_training_data(dataset_path, target_column):
     if not dataset_path.exists():
         raise FileNotFoundError(f"Dataset not found at {dataset_path}")
-    
+
     df = pd.read_csv(dataset_path)
-    
+
+    # Remove ID column
+    if "Loan_ID" in df.columns:
+        df = df.drop(columns=["Loan_ID"])
+
     if target_column not in df.columns:
         raise ValueError(f"Target column '{target_column}' missing in training data")
-    
+
     X = df.drop(columns=[target_column])
     y = df[target_column]
-    
+
     return X, y
+
 
 def load_test_data(dataset_path):
     if not dataset_path.exists():
         raise FileNotFoundError(f"Dataset not found at {dataset_path}")
-    
+
     df = pd.read_csv(dataset_path)
+
+    # Remove ID column
+    if "Loan_ID" in df.columns:
+        df = df.drop(columns=["Loan_ID"])
+
     return df
+
 
 def load_datasets(train_path, test_path, target_column):
     X_train, y_train = load_training_data(train_path, target_column)
