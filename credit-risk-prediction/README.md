@@ -1,127 +1,230 @@
-# Credit Risk Prediction
+# 💳 Credit Risk Prediction
 
-This project predicts the likelihood of loan approval based on applicant data using a **Random Forest Classifier**. It includes data preprocessing, model training, evaluation, and visualization of results.
+A complete **Machine Learning** project that predicts whether a loan application is likely to be approved based on applicant information. The project includes **data preprocessing, model training, evaluation, visualization, and a deployed Streamlit web application**.
+
+## 🌐 Live Demo
+
+**Render:** https://sklearn-1.onrender.com/
 
 ---
 
-## **Project Structure**
+# 📌 Features
 
+* Interactive Streamlit web application
+* Predicts loan approval in real time
+* Displays prediction confidence
+* Complete preprocessing pipeline
+* Random Forest Classifier model
+* Handles missing values automatically
+* Feature scaling and categorical encoding
+* Model evaluation with multiple metrics
+* Data visualization and exploratory analysis
+* Saved preprocessing pipeline and trained model for inference
+
+---
+
+# 📂 Project Structure
+
+```text
 credit-risk-prediction/
 │
-├─ data/ # Dataset files
-│ ├─ loan_train.csv
-│ └─ loan_test.csv
+├── app.py                          # Streamlit application
+├── main.py                         # Project entry point
+├── requirements.txt
+├── runtime.txt
+├── README.md
 │
-├─ models/ # Trained model and preprocessing pipeline
-│ ├─ trained_model.pkl
-│ └─ preprocessing_pipeline.pkl
+├── data/
+│   ├── loan_train.csv
+│   └── loan_test.csv
 │
-├─ plots/ # All generated plots
+├── models/
+│   ├── trained_model.pkl
+│   └── preprocessing_pipeline.pkl
 │
-├─ src/ # Source code
-│ ├─ config.py # Configuration (paths, parameters)
-│ ├─ data_loader.py # Functions to load datasets
-│ ├─ preprocessing.py # Data preprocessing pipelines
-│ ├─ train.py # Train the model
-│ ├─ evaluate.py # Evaluate the model on test data
-│ └─ visualize.py # Generate plots
+├── plots/
+│   ├── correlation_heatmap.png
+│   ├── target_distribution.png
+│   └── ...
 │
-└─ README.md
-
-yaml
-Copy code
+└── src/
+    ├── config.py
+    ├── data_loader.py
+    ├── preprocessing.py
+    ├── train.py
+    ├── evaluate.py
+    ├── visualize.py
+    └── predictions/
+        └── y_pred.csv
+```
 
 ---
 
-## **Features**
+# 🛠 Tech Stack
 
-- Handles missing values in numeric and categorical features.
-- Scales numeric features and encodes categorical features using a **preprocessing pipeline**.
-- Trains a **Random Forest Classifier** with configurable hyperparameters.
-- Evaluates model using:
-  - Accuracy
-  - Confusion matrix
-  - Classification report
-- Generates visualizations:
-  - Target distribution
-  - Numeric and categorical feature distributions
-  - Correlation heatmap
+* Python
+* Streamlit
+* Pandas
+* NumPy
+* Scikit-learn
+* Joblib
+* Matplotlib
+* Seaborn
 
 ---
 
-## **Dependencies**
+# 🤖 Machine Learning Pipeline
 
-Install required Python packages:
+### Data Preprocessing
+
+* Missing value imputation
+* Feature scaling
+* One-hot encoding of categorical variables
+* Transformation pipeline using Scikit-learn
+
+### Model
+
+* Random Forest Classifier
+
+### Evaluation Metrics
+
+* Accuracy Score
+* Classification Report
+* Confusion Matrix
+* Prediction Probability
+
+---
+
+# 🚀 Running the Project Locally
+
+## Clone the repository
 
 ```bash
-pip install pandas scikit-learn matplotlib seaborn joblib
-Tested with Python 3.10+ and scikit-learn 1.2+
+git clone https://github.com/sarthak140706-spec/sklearn.git
+cd sklearn/credit-risk-prediction
+```
 
-Usage
-1. Train the model
-bash
-Copy code
+## Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+## Launch the Streamlit application
+
+```bash
+streamlit run app.py
+```
+
+The application will be available at:
+
+```text
+http://localhost:8501
+```
+
+---
+
+# 📊 Model Training
+
+Run the training script:
+
+```bash
 cd src
 python train.py
+```
+
 This will:
 
-Load the training dataset (data/loan_train.csv)
+* Load the training dataset
+* Perform preprocessing
+* Train the Random Forest model
+* Save:
 
-Preprocess the data
+  * `trained_model.pkl`
+  * `preprocessing_pipeline.pkl`
 
-Train the Random Forest model
+---
 
-Save the trained model and preprocessing pipeline to models/
+# 📈 Model Evaluation
 
-2. Evaluate the model
-bash
-Copy code
+```bash
 cd src
 python evaluate.py
-This will:
+```
 
-Load the test dataset (data/loan_test.csv)
+Outputs:
 
-Preprocess the data
+* Accuracy
+* Classification Report
+* Confusion Matrix
+* Predictions saved to:
 
-Make predictions
+```text
+src/predictions/y_pred.csv
+```
 
-Print evaluation metrics
+---
 
-Save predictions to predictions/y_pred.csv
+# 📉 Data Visualization
 
-3. Visualize the data
-bash
-Copy code
+Generate exploratory plots:
+
+```bash
 cd src
 python visualize.py
-Generates plots for:
+```
 
-Target distribution
+Generated visualizations include:
 
-Numeric feature distributions
+* Target distribution
+* Correlation heatmap
+* Numerical feature distributions
+* Categorical feature distributions
 
-Categorical feature distributions
+All plots are stored in the **plots/** directory.
 
-Correlation heatmap
+---
 
-Saves all plots in the plots/ folder.
+# 📋 Input Features
 
-Configuration
-All paths, target column, preprocessing parameters, and model parameters are in src/config.py.
+The application predicts loan approval using:
 
-Easily modify:
+* Gender
+* Married
+* Dependents
+* Education
+* Self Employed
+* Applicant Income
+* Coapplicant Income
+* Loan Amount
+* Loan Amount Term
+* Credit History
+* Property Area
 
-Preprocessing methods (numerical_scaler, categorical_encoder, missing value strategy)
+---
 
-Model type and hyperparameters
+# 📷 Application Preview
 
-Output directories for models and plots
+> Add screenshots of the Streamlit application here for a better GitHub presentation.
 
-Notes
-Ensure loan_train.csv and loan_test.csv exist in the data/ folder.
+---
 
-Run train.py before evaluate.py.
+# 🌍 Live Application
 
-Visualizations help in understanding feature distributions and target balance.
+**Render Deployment**
 
+https://sklearn-1.onrender.com/
+
+---
+
+# 👨‍💻 Author
+
+**Sarthak Jadhav**
+
+B.Tech – Artificial Intelligence & Data Science
+
+Passionate about Machine Learning, Deep Learning, Python, and AI-powered applications.
+
+---
+
+## ⭐ If you found this project useful, consider giving the repository a star!
